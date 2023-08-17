@@ -79,7 +79,7 @@ if ! mount ${card_device}1 $sdmount; then
 fi
 
 echo "Copying files."
-cp -r files ${sdmount}/
+cp -r $(dirname $0)/files ${sdmount}/
 
 echo "Creating installation script."
 echo "#!/bin/sh
