@@ -11,7 +11,7 @@ show_help() {
     echo "Usage: $0 -d <SD card device>"
     if [ "$EUID" -eq 0 ]; then
         echo -n "Detected devices: "
-        fdisk -x | grep -B1 SD | head -1 | awk '{print $2}' | sed 's/://'
+        fdisk -x | grep -B1 'SD/MMC' | head -1 | awk '{print $2}' | sed 's/://'
     fi
     exit 2
 }
