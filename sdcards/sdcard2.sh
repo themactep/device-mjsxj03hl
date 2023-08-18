@@ -84,15 +84,12 @@ cp -r $(dirname $0)/files ${sdmount}/
 echo "Creating installation script."
 echo "#!/bin/sh
 
-# Set memory for default resolution
 fw_setenv osmem 39M
 fw_setenv rmem 25M@0x2700000
 
-# Set wireless network credentials
 fw_setenv wlanssid \"${wlanssid}\"
 fw_setenv wlanpass \"${wlanpass}\"
 
-# Clean up overlay partition
 cp -rv \$(dirname \$0)/files/* /
 
 echo \"
