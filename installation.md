@@ -1,6 +1,11 @@
 Installing OpenIPC on Xiaomi MJSXJ03HL
 --------------------------------------
 
+> This is an abridged and modified version of the installation.
+Check the [upstream repo](https://github.com/OpenIPC/device-mjsxj03hl)
+for more details.
+
+
 ### Connect the camera to UART adapter.
 
 Connect an UART adapter to the camera according to the scheme below.
@@ -15,16 +20,17 @@ Keep them short until you see the bootloader shell prompt (2-3 seconds).
 
 ![](images/flash.png)
 
+
 ### Create a backup of the stock firmware.
 
 Insert an empty SD cart into the card slot of the camera.
 
 ```
-mmc dev 0
-mmc erase 0x10 0x8000
-mw.b 0x80600000 ff 0x1000000
-sf probe 0
-sf read 0x80600000 0x0 0x1000000
+mmc dev 0;
+mmc erase 0x10 0x8000;
+mw.b 0x80600000 ff 0x1000000;
+sf probe 0;
+sf read 0x80600000 0x0 0x1000000;
 mmc write 0x80600000 0x10 0x8000
 ```
 
