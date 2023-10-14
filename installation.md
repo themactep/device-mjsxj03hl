@@ -100,6 +100,10 @@ and open Web UI at port 85 to continue with configuration.
 
 ### Troubleshooting
 
+If your SD card is not detected in Linux, reboot the camera without the card,
+then run `gpio clean 54`, insert the card and run `echo "INSERT" > /sys/devices/platform/jzmmc_v1.2.0/present`.
+Run `mount` to check if the card is detected and mounted.
+
 I noticed that camera runs hot and at some freaks out and cannot properly
 identify the inserted SD card. Disconnect the camera from power supply
 (including UART) and let it cool off for a few minutes. Connect everything
