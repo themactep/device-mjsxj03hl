@@ -1,5 +1,5 @@
 Installing OpenIPC on Xiaomi MJSXJ03HL
-==========================================
+======================================
 
 > This is an abridged and modified version of the installation.
 Check the [upstream repo](https://github.com/OpenIPC/device-mjsxj03hl)

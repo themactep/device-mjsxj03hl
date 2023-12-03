@@ -88,8 +88,8 @@ echo \"osmem 39M
 rmem 25M@0x2700000
 extras nogmac
 wlandev rtl8189fs-generic
-wlanssid \\\"${wlanssid}\\\"
-wlanpass \\\"${wlanpass}\\\"
+wlanssid ${wlanssid}
+wlanpass ${wlanpass}
 \" >/tmp/2env.txt
 
 fw_setenv --script /tmp/2env.txt
