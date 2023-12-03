@@ -1,6 +1,9 @@
 system:
-  webAdmin: enabled
+  webAdmin: disabled
   buffer: 1024
+isp:
+  blkCnt: 1
+  lowDelay: false
 image:
   mirror: false
   flip: false
@@ -19,9 +22,10 @@ nightMode:
   irSensorPinInvert: false
   irCutPin1: 49
   irCutPin2: 50
+  dncDelay: 30
 records:
   enabled: false
-  path: /mnt/mmcblk0p1/%Y/%m/%d/%H.mp4
+  path: /mnt/mmcblk0p1/%Y/%m/%d/%H/%M.mp4
   maxUsage: 95
 video0:
   enabled: true
@@ -50,10 +54,10 @@ motionDetect:
   debug: true
 ipeye:
   enabled: false
+netip:
+  enabled: false
+onvif:
+  enabled: true
 watchdog:
   enabled: true
   timeout: 10
-isp:
-  blkCnt: 1
-  antiFlicker: 50
-  lowDelay: false

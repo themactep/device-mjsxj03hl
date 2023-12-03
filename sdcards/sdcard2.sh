@@ -84,13 +84,19 @@ cp -r $(dirname $0)/files ${sdmount}/
 echo "Creating installation script."
 echo "#!/bin/sh
 
-fw_setenv osmem 39M
-fw_setenv rmem 25M@0x2700000
+echo \"osmem 39M
+rmem 25M@0x2700000
+extras nogmac
+wlandev rtl8189fs-generic
+wlanssid \\\"${wlanssid}\\\"
+wlanpass \\\"${wlanpass}\\\"
+\" >/tmp/2env.txt
 
-fw_setenv wlanssid \"${wlanssid}\"
-fw_setenv wlanpass \"${wlanpass}\"
+fw_setenv --script /tmp/2env.txt
 
 cp -rv \$(dirname \$0)/files/* /
+
+echo \"extra/8189fs.ko: kernel/net/wireless/cfg80211.ko\" >> /lib/modules/3.10.14__isvp_swan_1.0__/modules.dep
 
 echo \"
 Configuration is done.
