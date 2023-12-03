@@ -1,10 +1,19 @@
 Installing OpenIPC on Xiaomi MJSXJ03HL
---------------------------------------
+==========================================
 
 > This is an abridged and modified version of the installation.
 Check the [upstream repo](https://github.com/OpenIPC/device-mjsxj03hl)
 for more details.
 
+This installer used Lite edition of [OpenIPC](https://openipc.org/) firmware
+even though each of the cameras has a 16MB flash memory chip.
+
+I find it more benefitial to use a more compact build and only add what's 
+needed. With Lite and the added wireless driver, you will have about 8 MB of
+free space in overlay partition for your own scripts. Cool, huh?
+
+
+## Installation
 
 ### Connect the camera to UART adapter.
 
@@ -26,11 +35,11 @@ Keep them short until you see the bootloader shell prompt (2-3 seconds).
 Insert an empty SD cart into the card slot of the camera.
 
 ```
-mmc dev 0;
-mmc erase 0x10 0x8000;
-mw.b 0x80600000 ff 0x1000000;
-sf probe 0;
-sf read 0x80600000 0x0 0x1000000;
+mmc dev 0
+mmc erase 0x10 0x8000
+mw.b 0x80600000 ff 0x1000000
+sf probe 0
+sf read 0x80600000 0x0 0x1000000
 mmc write 0x80600000 0x10 0x8000
 ```
 
@@ -39,7 +48,7 @@ Run the following command in terminal to copy raw data from the SD card
 into a binary file on the computer:
 
 ```
-dd bs=512 skip=16 count=32768 if=/dev/sdc of=./fulldump.bin
+sudo dd bs=512 skip=16 count=32768 if=/dev/sdc of=./fulldump.bin
 ```
 
 Make sure your resulting file is 16MB in size. Check integrity of the data
@@ -58,6 +67,7 @@ by running `sdcards/sdcard1.sh` script.
 Insert the card into the camera and run:
 
 ```
+mmc rescan
 setenv baseaddr 0x80600000
 setenv flashsize 0x1000000
 mw.b ${baseaddr} 0xff ${flashsize}
@@ -72,7 +82,7 @@ After the camera reboots you should see the OpenIPC logo and a login prompt.
 Log in as "root" with password "12345".
 
 
-### Install wireless driver and initial configuration.
+### Install drivers and initial configuration.
 
 Create a configuration SD card by running `sdcards/sdcard2.sh` script.
 You will be asked for SSID and password of your wireless network.
